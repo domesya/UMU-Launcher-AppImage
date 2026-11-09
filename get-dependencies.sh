@@ -7,7 +7,6 @@ ARCH=$(uname -m)
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
 pacman -Syu --noconfirm \
-  # umu-launcher
   base-devel                  \
   bash                        \
   curl                        \
@@ -18,17 +17,6 @@ pacman -Syu --noconfirm \
   gdk-pixbuf2                 \
   glibc                       \
   hicolor-icon-theme          \
-  # lib32-alsa-plugins          \
-  # lib32-gcc-libs              \
-  # lib32-glibc                 \
-  # lib32-libglvnd              \
-  # lib32-libgpg-error          \
-  # lib32-libx11                \
-  # lib32-libxcrypt             \
-  # lib32-libxcrypt-compat      \
-  # lib32-libxss                \
-  # lib32-nss                   \
-  # lib32-vulkan-icd-loader     \
   libgcc                      \
   libxcrypt                   \
   libxcrypt-compat            \
@@ -54,6 +42,18 @@ pacman -Syu --noconfirm \
   python-maturin              \
   python-pip                  \
   scdoc
+
+  # lib32-alsa-plugins          \
+  # lib32-gcc-libs              \
+  # lib32-glibc                 \
+  # lib32-libglvnd              \
+  # lib32-libgpg-error          \
+  # lib32-libx11                \
+  # lib32-libxcrypt             \
+  # lib32-libxcrypt-compat      \
+  # lib32-libxss                \
+  # lib32-nss                   \
+  # lib32-vulkan-icd-loader     \
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
