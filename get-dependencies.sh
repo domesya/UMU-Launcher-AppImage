@@ -38,8 +38,10 @@ pacman -Syu --noconfirm \
   git                         \
   python-build                \
   python-setuptools           \
+  python-setuptools-scm       \
   python-wheel                \
   python-hatchling            \
+  python-hatch-vcs            \
   python-installer            \
   python-maturin              \
   python-pip                  \
