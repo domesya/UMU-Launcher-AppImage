@@ -16,6 +16,7 @@ export MAIN_BIN=umu-run
 # Deploy dependencies
 quick-sharun \
   /usr/bin/umu-run  \
+  /usr/lib/python3.14/site-packages/umu \
   /usr/bin/zenity
 
 # Additional changes can be done in between here
