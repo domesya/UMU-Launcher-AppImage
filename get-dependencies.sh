@@ -37,6 +37,8 @@ pacman -Syu --noconfirm \
   rust                        \
   git                         \
   python-build                \
+  python-setuptools           \
+  python-wheel                \
   python-hatchling            \
   python-installer            \
   python-maturin              \
