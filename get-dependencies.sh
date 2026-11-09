@@ -38,6 +38,7 @@ pacman -Syu --noconfirm \
   git                         \
   python-build                \
   python-setuptools           \
+  python-setuptools-scm       \
   python-wheel                \
   python-hatchling            \
   python-hatch-vcs            \
@@ -66,12 +67,13 @@ get-debloated-pkgs --add-common --prefer-nano
 make-aur-package zenity-rs-bin
 
 # If the application needs to be manually built that has to be done down here
-pip install --upgrade "setuptools-scm<10"
 
+PIP_BREAK_SYSTEM_PACKAGES=1 pip install --upgrade "setuptools-scm<10"
 git clone --recurse-submodules https://github.com/Open-Wine-Components/umu-launcher ./umu-launcher
 
 (
   cd ./umu-launcher
+  
   git fetch --tags origin
   TAG=$(git tag --sort=-v:refname | grep -vi 'rc\|alpha\|beta' | head -1)
   git checkout "$TAG"
