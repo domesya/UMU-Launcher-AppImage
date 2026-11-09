@@ -7,24 +7,72 @@ ARCH=$(uname -m)
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
 pacman -Syu --noconfirm \
-  umu-launcher
+  base-devel                  \
+  bash                        \
+  curl                        \
+  dbus                        \
+  desktop-file-utils          \
+  diffutils                   \
+  freetype2                   \
+  gdk-pixbuf2                 \
+  glibc                       \
+  hicolor-icon-theme          \
+  lib32-alsa-plugins          \
+  lib32-gcc-libs              \
+  lib32-glibc                 \
+  lib32-libglvnd              \
+  lib32-libgpg-error          \
+  lib32-libx11                \
+  lib32-libxcrypt             \
+  lib32-libxcrypt-compat      \
+  lib32-libxss                \
+  lib32-nss                   \
+  lib32-vulkan-icd-loader     \
+  libgcc                      \
+  libxcrypt                   \
+  libxcrypt-compat            \
+  lsb-release                 \
+  lsof                        \
+  nss                         \
+  python                      \
+  python-cbor2                \
+  python-pyzstd               \
+  python-urllib3              \
+  python-xlib                 \
+  python-xxhash               \
+  ttf-dejavu                  \
+  vulkan-icd-loader           \
+  xdg-user-dirs               \
+  xorg-xrandr                 \
+  python-truststore           \
+  rust                        \
+  git                         \
+  python-build                \
+  python-hatchling            \
+  python-installer            \
+  python-maturin              \
+  python-pip                  \
+  scdoc
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano
 
 # Comment this out if you need an AUR package
-#make-aur-package PACKAGENAME
+make-aur-package zenity-rs-bin
 
 # If the application needs to be manually built that has to be done down here
 
-# if you also have to make nightly releases check for DEVEL_RELEASE = 1
-#
-# if [ "${DEVEL_RELEASE-}" = 1 ]; then
-# 	nightly build steps
-# else
-# 	regular build steps
-# fi
+git clone --recurse-submodules https://github.com/Open-Wine-Components/umu-launcher ./umu-launcher
 
-# Note that when building manually, you want to output the version of the
-# application to a ~/version file and remove VERSION from make-appimage.sh
+(
+  cd ./umu-launcher
+  git fetch --tags origin
+  TAG=$(git tag --sort=-v:refname | grep -vi 'rc\|alpha\|beta' | head -1)
+  git checkout "$TAG"
+  echo "${TAG#v}" > ~/version  
+  ./configure.sh --prefix=/usr
+  make
+  make install
+  
+)
